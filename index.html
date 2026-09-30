@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quantum Networks</title>
+  <meta name="description" content="Quantum Networks — IT services for the metaverse: virtual workplaces, immersive support, and secure network infrastructure.">
+  <meta property="og:title" content="Quantum Networks — IT in the Metaverse">
+  <meta property="og:image" content="assets/hero.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070b14;
+      --surface: #0e1524;
+      --surface-2: #142036;
+      --text: #e8eef7;
+      --muted: #9aa8bd;
+      --accent: #5cc8f0;
+      --warm: #f2b866;
+      --border: rgba(255, 255, 255, 0.08);
+      --radius: 14px;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.6 Inter, system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+    .display { font-family: "Josefin Sans", sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* Nav */
+    header {
+      position: fixed; inset: 0 0 auto 0; z-index: 10;
+      background: linear-gradient(to bottom, rgba(7, 11, 20, 0.85), rgba(7, 11, 20, 0));
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .brand { font-weight: 600; font-size: 1.05rem; text-decoration: none; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.95rem; }
+    .nav-links a:hover { color: var(--text); }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    /* Hero */
+    .hero { position: relative; min-height: min(92vh, 780px); display: flex; align-items: flex-end; overflow: hidden; }
+    .hero img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 35%;
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(7, 11, 20, 0) 45%, rgba(7, 11, 20, 0.7) 75%, var(--bg) 100%);
+    }
+    @media (max-width: 760px) { .hero { min-height: 0; aspect-ratio: 1200 / 670; margin-top: 56px; } }
+    .hero-content { position: relative; z-index: 1; padding-bottom: 40px; width: 100%; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+    .intro { text-align: center; padding-block: 24px 72px; }
+    .intro h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.15; margin: 0 0 16px; font-weight: 600; }
+    .intro h1 em { font-style: normal; color: var(--accent); }
+    .intro p { color: var(--muted); max-width: 640px; margin: 0 auto 32px; font-size: 1.1rem; }
+
+    .btn {
+      display: inline-block; padding: 13px 26px; border-radius: 999px;
+      font-weight: 600; text-decoration: none; transition: transform .15s, background .15s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #04121c; }
+    .btn-ghost { border: 1px solid var(--border); background: rgba(255, 255, 255, 0.04); }
+    .btn-ghost:hover { background: rgba(255, 255, 255, 0.09); }
+
+    /* Sections */
+    section { padding: 88px 0; }
+    .eyebrow { color: var(--warm); font-size: 0.85rem; margin: 0 0 10px; }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.3rem); margin: 0 0 16px; line-height: 1.2; font-weight: 600; }
+    .lead { color: var(--muted); max-width: 620px; margin: 0 0 48px; }
+
+    .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px;
+    }
+    .card h3 { margin: 16px 0 8px; font-size: 1.15rem; }
+    .card p { margin: 0; color: var(--muted); }
+    .icon {
+      width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+      background: rgba(92, 200, 240, 0.12); color: var(--accent);
+    }
+
+    .band { background: var(--surface); border-block: 1px solid var(--border); }
+    .steps { counter-reset: step; display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .step { padding: 24px; border-radius: var(--radius); background: var(--surface-2); }
+    .step::before {
+      counter-increment: step; content: "0" counter(step);
+      font-family: "Josefin Sans", sans-serif; font-size: 1.6rem; color: var(--warm);
+    }
+    .step h3 { margin: 8px 0 6px; font-size: 1.05rem; }
+    .step p { margin: 0; color: var(--muted); }
+
+    .cta { text-align: center; }
+    .cta-box {
+      padding: 56px 24px; border-radius: 22px; border: 1px solid var(--border);
+      background:
+        radial-gradient(ellipse at top, rgba(92, 200, 240, 0.18), transparent 60%),
+        radial-gradient(ellipse at bottom, rgba(242, 184, 102, 0.12), transparent 60%),
+        var(--surface);
+    }
+    .cta-box p { color: var(--muted); max-width: 520px; margin: 0 auto 28px; }
+
+    footer { border-top: 1px solid var(--border); padding: 32px 0; color: var(--muted); font-size: 0.9rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap">
+      <a class="brand display" href="#">Quantum <span>Networks</span></a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <img src="assets/hero.png" alt="An avatar in a Quantum Networks shirt facing a giant holographic Earth inside a virtual hangar">
+    </div>
+
+    <div class="intro wrap">
+      <p class="eyebrow display">IT in the Metaverse</p>
+      <h1>Your IT team, <em>wherever your world&nbsp;is</em></h1>
+      <p>Quantum Networks builds, secures, and supports the infrastructure behind virtual workplaces, so your people can meet, build, and collaborate in immersive spaces without the headaches.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Book a virtual walkthrough</a>
+        <a class="btn btn-ghost" href="#services">Explore services</a>
+      </div>
+    </div>
+
+    <section id="services">
+      <div class="wrap">
+        <p class="eyebrow display">What we do</p>
+        <h2>Full-stack IT for virtual and physical spaces</h2>
+        <p class="lead">From the network that carries every frame to the help desk that meets you inside the headset.</p>
+        <div class="grid">
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            </div>
+            <h3>Virtual workplaces</h3>
+            <p>Design and deploy persistent 3D offices, showrooms, and event spaces your team actually wants to use.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/></svg>
+            </div>
+            <h3>Network infrastructure</h3>
+            <p>Low-latency, high-bandwidth networks tuned for real-time 3D, streaming, and spatial audio.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <h3>Security &amp; identity</h3>
+            <p>Access control, device management, and data protection that follow users across every world.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+            </div>
+            <h3>Immersive help desk</h3>
+            <p>Support that shows up as an avatar beside you, walking through fixes in the same space you work in.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="band">
+      <div class="wrap">
+        <p class="eyebrow display">How it works</p>
+        <h2>From first call to fully immersive</h2>
+        <p class="lead">A clear path from where you are today to a connected, supported virtual workplace.</p>
+        <div class="steps">
+          <div class="step"><h3>Discover</h3><p>We map your team, tools, and goals, then tour the possibilities together in VR.</p></div>
+          <div class="step"><h3>Design</h3><p>We architect the spaces, network, and security model that fit how you work.</p></div>
+          <div class="step"><h3>Deploy</h3><p>We roll out hardware, software, and onboarding with minimal disruption.</p></div>
+          <div class="step"><h3>Support</h3><p>Ongoing monitoring and help, in the headset or out of it.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="cta">
+      <div class="wrap">
+        <div class="cta-box">
+          <p class="eyebrow display">Let's talk</p>
+          <h2>Step into the metaverse with a team that has your back</h2>
+          <p>Tell us what you're building. We'll meet you in person, on a call, or in a virtual room.</p>
+          <!-- TODO: replace with the real contact address -->
+          <a class="btn btn-primary" href="mailto:hello@example.com?subject=Quantum%20Networks%20inquiry">Get in touch</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span class="display">Quantum Networks</span>
+      <span>&copy; <span id="year">2026</span> Quantum Networks. All rights reserved.</span>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
